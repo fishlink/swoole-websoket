@@ -11,6 +11,7 @@ class SwooleWebsocket{
 
     public function __construct($ip='0.0.0.0',$port=9502)
     {
+        session_start();
         $this->_server = new swoole_websocket_server($ip,$port);
     }
 
@@ -21,22 +22,25 @@ class SwooleWebsocket{
 
         $this->_server->on('close', [$this,'onClose']);
 
-        $this->_server->on('request', 'onRequest');
+        $this->_server->on('request', [$this,'onRequest']);
 
         $this->_server->start();
     }
 
     public function onOpen(swoole_websocket_server $server, $request) {
         echo "server: handshake success with fd{$request->fd}\n";
+        echo session_id()."\n";
+        $_SESSION['user001'] = $request->fd;
     }
 
     public function onMessage(swoole_websocket_server $server, $frame) {
         echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
-        $server->push($frame->fd, "this is server");
+        $server->push($_SESSION['user001'], "this is server to 001");
     }
 
     public function onClose(swoole_websocket_server $server, $fd) {
         echo "client {$fd} closed\n";
+        unset($_SESSION['user001']);
     }
 
     public function onRequest(swoole_http_request $request, swoole_http_response $response) {
