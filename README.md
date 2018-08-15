@@ -8,4 +8,4 @@
 linux服务器环境，本人使用lnmp服务器环境，一键安装就可以用了，官方文档：https://lnmp.org/install.html
 
 # 安装swoole扩展
-使用命令 pecl install swoole，编译安装成功后，编辑php配置文件，加上extension=swoole.so，查看phpinfo，如果有swoole模块，表示编译安装成功
+swoole扩展已经收录到了PHP官方扩展pecl了，使用命令 pecl install swoole，编译安装成功后，编辑php配置文件，加上extension=swoole.so，查看phpinfo或者cli模式下php -m，如果有swoole模块，表示编译安装成功
