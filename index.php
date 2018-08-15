@@ -9,7 +9,7 @@ websocket客户端
 </body>
 </html>
 <script>
-    var wsServer = 'ws://127.0.0.1:9502';
+    var wsServer = 'ws://192.168.1.111:9502';
     var websocket = new WebSocket(wsServer);
     websocket.onopen = function (evt) {
         console.log("Connected to WebSocket server.");

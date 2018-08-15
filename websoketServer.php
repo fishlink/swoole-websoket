@@ -12,17 +12,14 @@ class SwooleWebsocket{
     public function __construct($ip='0.0.0.0',$port=9502)
     {
         $this->_server = new swoole_websocket_server($ip,$port);
-        $this->_server->set([
-            'websocket_subprotocol' => 'chat',
-        ]);
     }
 
     public function startServer(){
-        $this->_server->on('open', 'onOpen');
+        $this->_server->on('open', [$this,'onOpen']);
 
-        $this->_server->on('message', 'onMessage');
+        $this->_server->on('message', [$this,'onMessage']);
 
-        $this->_server->on('close', 'onClose');
+        $this->_server->on('close', [$this,'onClose']);
 
         $this->_server->start();
     }
