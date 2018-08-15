@@ -16,4 +16,7 @@ swoole扩展已经收录到了PHP官方扩展pecl了，使用命令 pecl install
 用composer安装：composer require --dev "eaglewu/swoole-ide-helper:dev-master"，github地址：https://github.com/wudi/swoole-ide-helper
 
 # 运行
-cd到项目目录下，linux终端运行php websoketServer.php，浏览器访问项目，发现已建立连接
+cd到项目目录下，linux终端运行php websoketServer.php，或者在后台运行：nohup php websoketServer.php &，客户端浏览器访问项目，发现已建立连接
+客户端使用js的websock：var wsServer = 'ws://192.168.1.111:9502';向服务器发送消息使用：websocket.send('client data');
+服务器发送消息使用：$server->push($frame->fd, "this is server");
+
