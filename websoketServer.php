@@ -21,6 +21,8 @@ class SwooleWebsocket{
 
         $this->_server->on('close', [$this,'onClose']);
 
+        $this->_server->on('request', 'onRequest');
+
         $this->_server->start();
     }
 
@@ -35,6 +37,14 @@ class SwooleWebsocket{
 
     public function onClose(swoole_websocket_server $server, $fd) {
         echo "client {$fd} closed\n";
+    }
+
+    public function onRequest(swoole_http_request $request, swoole_http_response $response) {
+//        global $server;//调用外部的server
+        // $server->connections 遍历所有websocket连接用户的fd，给所有用户推送
+        foreach ($this->_server->connections as $fd) {
+            $this->_server->push($fd, $request->get['message']);
+        }
     }
 }
 
