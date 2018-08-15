@@ -1,7 +1,29 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: MACHENIKE
- * Date: 2018/8/15
- * Time: 11:21
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket客户端</title>
+</head>
+<body>
+websocket客户端
+</body>
+</html>
+<script>
+    var wsServer = 'ws://127.0.0.1:9502';
+    var websocket = new WebSocket(wsServer);
+    websocket.onopen = function (evt) {
+        console.log("Connected to WebSocket server.");
+    };
+
+    websocket.onclose = function (evt) {
+        console.log("Disconnected");
+    };
+
+    websocket.onmessage = function (evt) {
+        console.log('Retrieved data from server: ' + evt.data);
+    };
+
+    websocket.onerror = function (evt, e) {
+        console.log('Error occured: ' + evt.data);
+    };
+</script>
