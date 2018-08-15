@@ -14,3 +14,6 @@ swoole扩展已经收录到了PHP官方扩展pecl了，使用命令 pecl install
 # 安装代码自动提示工具
 初衷：由于大多数人开发环境都是用windows，而swoole的运行环境是linux，为了提高开发效率和照顾初级程序员，因此需要安装代码自动提示工具
 用composer安装：composer require --dev "eaglewu/swoole-ide-helper:dev-master"，github地址：https://github.com/wudi/swoole-ide-helper
+
+# 运行
+cd到项目目录下，linux终端运行php websoketServer.php，浏览器访问项目，发现已建立连接
