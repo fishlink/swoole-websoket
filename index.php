@@ -13,6 +13,7 @@ websocket客户端
     var websocket = new WebSocket(wsServer);
     websocket.onopen = function (evt) {
         console.log("Connected to WebSocket server.");
+        websocket.send('client data');
     };
 
     websocket.onclose = function (evt) {
